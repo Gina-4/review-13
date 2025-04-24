@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import FruitList from './components/FruitList';
-import positiveMessage from './positiveMessage.jsx';
+import PositiveMessage from './components/positiveMessage';
 
 
 function App() {
   const [totalFruits, setTotalFruits] = useState(0);
   // This is the goal for the number of fruits to be eaten per day
-  const [goal, setGoal] = useState(5);
+  const goal = 5;
 
   const handleTotalChange = (newTotalFruits) => {
     setTotalFruits(newTotalFruits);
@@ -20,7 +20,7 @@ function App() {
         onTotalChange={handleTotalChange} 
         
       />
-      < positiveMessage/>
+      < PositiveMessage totalFruits={totalFruits} goal={goal} />
     </div>
 
    
