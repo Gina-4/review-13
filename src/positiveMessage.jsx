@@ -1,16 +1,30 @@
 import { useState, useEffect } from "react";
-const [goal, setGoal] = useState('');
-const [totalFruits, setTotalFruits] = useState('');
-const [message, setMessage] = useState('');
 
-function positiveMessage(props) {
-return (
 
-        <div style={{ marginTop: '20px' }}>
-          <h2>Daily Goal: {goal.props}</h2>
-          <p>Progress: {totalFruits.props}</p>
-          <p><strong>{message.props}</strong></p>
-        </div>
-    );
+function PositiveMessage({goal, totalFruits}) {
+  const [message, setMessage] = useState('');
+
+useEffect(() => {
+if (totalFruits >= goal) {
+  setMessage("Congratulations! You have reached your goal")
+} else if (totalFruits === 0) {
+  setMessage ("Lets start getting healthy")
 }
-export default positiveMessage;
+else if (totalFruits < goal) {
+  setMessage (`Keep going! ${goal - totalFruits} to go!`) 
+} else {
+  setMessage("Let's start getting healthy")
+}
+
+}, [goal, totalFruits])
+return (
+      <>
+      <h2>Daily Goal: {goal}</h2>
+      <p>Progress: {totalFruits}</p> 
+      <p><strong>{message}</strong></p>
+      </>
+    
+);
+
+}
+export default PositiveMessage;
